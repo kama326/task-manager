@@ -14,17 +14,7 @@ apt update
 apt install -y docker.io docker-compose-plugin
 ```
 
-## 2. Получение SSL-сертификатов (Let's Encrypt)
-Нам нужны SSL-сертификаты для работы HTTPS. Мы используем `certbot`.
-
-```bash
-apt install -y certbot
-# Остановите любые процессы на 80 порту, если они есть
-certbot certonly --standalone -d taskmanager2026.ru
-```
-Сертификаты появятся в папке `/etc/letsencrypt/live/taskmanager2026.ru/`.
-
-## 3. Загрузка файлов проекта
+## 2. Загрузка файлов проекта
 Вам нужно перенести файлы с вашего компьютера на сервер. Можно использовать `scp` или `FileZilla`.
 Скопируйте всю папку `task_manager` на сервер, например, в `/root/task_manager`.
 
@@ -34,7 +24,7 @@ certbot certonly --standalone -d taskmanager2026.ru
 - `docker-compose.prod.yml`
 - `requirements.txt` (если есть в корне)
 
-## 4. Запуск (Deploy)
+## 3. Запуск (Deploy)
 На сервере перейдите в папку проекта:
 ```bash
 cd /root/task_manager
@@ -50,7 +40,7 @@ export SECRET_KEY='ваш-очень-сложный-секретный-ключ'
 docker compose -f docker-compose.prod.yml up -d --build
 ```
 
-## 5. Проверка
+## 4. Проверка
 Откройте [https://taskmanager2026.ru](https://taskmanager2026.ru) в браузере.
 
 ## Если что-то не работает
